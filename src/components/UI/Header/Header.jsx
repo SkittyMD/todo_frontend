@@ -8,7 +8,7 @@ const Header = () => {
             <div className="container">
                 <HeaderItem key='tasks' logo path={'/'} childern='MyTasks' />
                 <nav className="nav">
-                    <HeaderItem key='add-new-task' path={'/add-new-task'} childern="Add new task" />
+                    <HeaderItem key='add-task' path={'/add-task'} childern="Добавить задачу" />
                 </nav>
             </div>
         </div>

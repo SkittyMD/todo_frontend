@@ -1,26 +1,26 @@
 import React from "react";
-import HeadhingsbarItem from "./HeadhingsbarItem/HeadhingsbarItem";
-import './Headhingsbar.css'
+import HeadingsbarItem from "./HeadingsbarItem/HeadingsbarItem";
+import './Headingsbar.css'
 
-const Headhingsbar = ({headhings}) => {
+const Headingsbar = ({headhings}) => {
     return (
-        <div className="Headhingsbar">
-            <HeadhingsbarItem
+        <div className="Headingsbar">
+            <HeadingsbarItem
                 key='all'
                 childern='Все задачи'
                 path='../'
             />
-            {headhings.map(el => {
+            {headhings?.length ? headhings.map(el => {
                 return (
-                    <HeadhingsbarItem
+                    <HeadingsbarItem
                         key={el}
                         childern={el}
                         path={el}
                     />
                 )
-            })}
+            }) : null}
         </div>
     )
 }
 
-export default Headhingsbar
+export default Headingsbar

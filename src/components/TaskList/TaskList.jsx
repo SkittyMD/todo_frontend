@@ -3,19 +3,20 @@ import TaskListItem from "./TaskListItem/TaskListItem";
 const TaskList = ({ tasks, onClickTask, changeStatusBtn, deleteBtn, editBtn }) => {
     return (
         <div>
-            {tasks.map(task => {
+            {tasks ? Object.keys(tasks).map(task => {
                 return <TaskListItem
-                    key={task.id}
-                    status={task.status}
-                    title={task.title}
-                    description={task.description}
-                    headings={task.headings}
-                    onClickTask={onClickTask}
+                    key={task}
+                    status={tasks[task].status}
+                    title={tasks[task].title}
+                    description={tasks[task].description}
+                    headings={tasks[task].headings}
+                    onClickTask={() => onClickTask(task)}
                     changeStatusBtn={changeStatusBtn}
                     deleteBtn={deleteBtn}
-                    editBtn={editBtn}
-                />
-            })}
+                    editBtn={() => editBtn(task)}
+                /> 
+            })
+            : null}
         </div>
     )
 };

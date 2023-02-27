@@ -1,11 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import './HeadhingsbarItem.css'
+import './HeadingsbarItem.css'
 
-const HeadhingsbarItem = ({ childern, path }) => {
+const HeadingsbarItem = ({ childern, path }) => {
     return (
         <NavLink
-            className='HeadhingsbarItem'
+            className='HeadingsbarItem'
             to={'/tasks/' + path}
         >
             {childern}
@@ -13,4 +13,4 @@ const HeadhingsbarItem = ({ childern, path }) => {
     )
 }
 
-export default HeadhingsbarItem
+export default HeadingsbarItem

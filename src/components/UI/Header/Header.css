@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+.Header {
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    max-width: 900px;
+    gap: 50px;
+    height: 6vh;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content {
+    background-color: rgb(255, 255, 255);
+    height: 94vh;
+    padding: 20px 0;
+}
+
+.nav {
+    display: flex;
+    gap: 50px;
+}

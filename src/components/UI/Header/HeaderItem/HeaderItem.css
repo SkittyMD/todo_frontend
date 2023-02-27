@@ -1,0 +1,19 @@
+.HeaderItem {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.HeaderItem:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.HeaderItem.active {
+    font-weight: bold;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+}

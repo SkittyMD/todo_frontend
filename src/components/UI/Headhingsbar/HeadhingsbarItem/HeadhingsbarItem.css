@@ -1,0 +1,15 @@
+.HeadhingsbarItem {
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+    border-bottom: 1px solid #000;
+}
+
+.HeadhingsbarItem:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.HeadhingsbarItem.active {
+    font-weight: bold;
+}

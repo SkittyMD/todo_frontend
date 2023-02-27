@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import './HeadingsbarItem.css'
+import './HeadingsbarItem.scss'
 
 const HeadingsbarItem = ({ childern, path }) => {
     return (

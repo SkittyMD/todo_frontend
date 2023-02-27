@@ -1,16 +1,16 @@
 import Button from "../../UI/Button/Button";
-import './TaskListItem.css'
+import './TaskListItem.scss'
 
 const TaskListItem = ({ status, onClickTask, changeStatusBtn, deleteBtn, editBtn, title, description, headings, dateCreate, dateDeadline }) => {
     return (
-        <div className={status} onClick={onClickTask}>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <p>Дата создания/обновления: {(new Date(dateCreate)).toLocaleString()}</p>
+        <div className={status + ' TaskListItem'} onClick={onClickTask}>
+            <h2 className="TaskListItem_title">{title}</h2>
+            <p className="TaskListItem_description">{description}</p>
+            <p className="TaskListItem_date">Дата создания/обновления: {(new Date(dateCreate)).toLocaleString()}</p>
             {!!dateDeadline ?
-            <p>Деадлайн до: {(new Date(dateDeadline)).toLocaleString()}</p>
-            : null}
-            <div>
+                <p className="TaskListItem_date">Деадлайн до: {(new Date(dateDeadline)).toLocaleString()}</p>
+                : null}
+            <div className="TaskListItem_btns_block">
                 <Button onClick={deleteBtn}>Удалить</Button>
                 <Button onClick={editBtn}>Редактировать</Button>
                 {
@@ -23,11 +23,11 @@ const TaskListItem = ({ status, onClickTask, changeStatusBtn, deleteBtn, editBtn
                         >Отметить как {status === 'complited' ? 'невыполненое' : 'выполненное'}</Button>
                 }
             </div>
-            <div>
+            <div className="TaskListItem_headings_block">
                 {headings === undefined ? null : headings.map(heading => {
                     return <p
                         key={heading}
-                        className="heading_task"
+                        className="TaskListItem_headings_block_item"
                     >
                         {heading}
                     </p>

@@ -1,11 +1,11 @@
 import React from "react";
-import './Button.css'
+import './Button.scss'
 
-const Button = ({ onClick, children, type }) => {
+const Button = ({ onClick, children, type, closeX}) => {
     return (
         <button
             type={type ? type : 'submit'}
-            className="Button"
+            className={`Button ${closeX ? 'close' : null}`}
             onClick={onClick}
         >
             {children}

@@ -1,0 +1,60 @@
+@import 'src/styles/global.scss';
+@import 'src/styles/variables.sass';
+
+.TaskListItem {
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid $background_thrid;
+    margin-top: 10px;
+
+    &_title {
+        color: $text_color_first;
+        font-size: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $text_color_first;
+    }
+
+    &_description {
+        padding: 20px 0 20px 30px;
+    }
+
+    &_date {
+        padding-bottom: 5px;
+        text-align: end;
+    }
+
+    &_btns_block {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    &_headings_block {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 15px;
+        border-top: 1px solid $text_color_first;
+        padding-top: 10px;
+
+        &_item {
+            font-size: 14px;
+            display: inline-block;
+            color: $text_color_first;
+            transition: 0.3s;
+            background: $background_second;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid $background_thrid;
+        }
+    }
+}
+
+.complited {
+    background-color: rgba(9, 211, 26, 0.322);
+}
+
+.overdue {
+    background: gray;
+}

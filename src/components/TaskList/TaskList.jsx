@@ -39,10 +39,11 @@ const TaskList = ({ tasks, onClickTask, changeStatusBtn, deleteBtn, editBtn }) =
                             description={tasks[task].description}
                             headings={tasks[task].headings}
                             onClickTask={() => onClickTask(task)}
-                            changeStatusBtn={() => changeStatusBtn(task, tasks[task])}
-                            deleteBtn={() => deleteBtn(task)}
-                            editBtn={() => editBtn(task)}
+                            changeStatusBtn={(e) => changeStatusBtn(task, tasks[task], e)}
+                            deleteBtn={(e) => deleteBtn(task, e)}
+                            editBtn={(e) => editBtn(task, e)}
                             dateCreate={tasks[task].dateCreate}
+                            dateDeadline={tasks[task].dateDeadline}
                         />
                     }
                 }

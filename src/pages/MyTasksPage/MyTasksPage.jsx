@@ -56,7 +56,6 @@ const MyTasksPage = () => {
     }
 
     const changeStatusBtn = (id, task, e) => {
-        console.log(e)
         e.stopPropagation()
         const copyTask = { ...task }
         const newStatus = task.status === 'complited' ? 'uncomplited' : 'complited'

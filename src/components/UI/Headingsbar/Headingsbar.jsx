@@ -1,6 +1,6 @@
 import React from "react";
 import HeadingsbarItem from "./HeadingsbarItem/HeadingsbarItem";
-import './Headingsbar.css'
+import './Headingsbar.scss'
 
 const Headingsbar = ({headhings}) => {
     return (

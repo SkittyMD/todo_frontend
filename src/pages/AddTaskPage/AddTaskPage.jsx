@@ -21,16 +21,22 @@ const AddTaskPage = () => {
     const onSubmitForm = (e) => {
         e.preventDefault()
         if (inputsValues.title.trim() !== '' && inputsValues.description.trim() !== '') {
-            try {
-                if (Date.parse(new Date()) > Date.parse(new Date(inputsValues.dateDeadline))) {
+            if (inputsValues.dateDeadline.trim() === '') {
+                const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited', dateCreate: new Date().toISOString(), dateDeadline: '' }
+                dispatch(addTask(newTask))
+                navigate('/')
+            } else {
+                try {
+                    if (Date.parse(new Date()) > Date.parse(new Date(inputsValues.dateDeadline))) {
+                        setCheckFields(true)
+                    } else {
+                        const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited', dateCreate: new Date().toISOString(), dateDeadline: new Date(inputsValues.dateDeadline).toISOString() || '' }
+                        dispatch(addTask(newTask))
+                        navigate('/')
+                    }
+                } catch (err) {
                     setCheckFields(true)
-                } else {
-                    const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited', dateCreate: new Date().toISOString(), dateDeadline: new Date(inputsValues.dateDeadline).toISOString() || '' }
-                    dispatch(addTask(newTask))
-                    navigate('/')
                 }
-            } catch (err) {
-                setCheckFields(true)
             }
         } else {
             setCheckFields(true)

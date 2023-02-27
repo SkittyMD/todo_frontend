@@ -31,7 +31,6 @@ export const changeTask = createAsyncThunk(`${namespace}/changeTask`, async (act
 
 export const deleteTask = createAsyncThunk(`${namespace}/deleteTask`, async (action) => {
     try {
-        console.log(action.id)
         await apiTasks.deleteTask(action.id)
         return action.id
     } catch (err) {

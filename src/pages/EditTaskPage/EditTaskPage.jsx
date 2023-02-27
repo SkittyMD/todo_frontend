@@ -5,7 +5,7 @@ import TaskForm from "../../components/TaskForm/TaskForm";
 import { changeTask, getTasks } from "../../store/tasks.slice";
 
 const EditTaskPage = () => {
-    const [inputsValues, setInputsValues] = useState({ title: '', description: '', heading: '', headings: [] })
+    const [inputsValues, setInputsValues] = useState({ title: '', description: '', heading: '', headings: [], dateDeadline: '' })
     const [checkFields, setCheckFields] = useState(false)
 
     const { tasks } = useSelector(state => state.tasks, shallowEqual)
@@ -16,7 +16,7 @@ const EditTaskPage = () => {
 
     useEffect(() => {
         const task = { ...tasks[param.id] }
-        const newStateInputs = { title: task.title, description: task.description, heading: '', headings: task.headings || [] }
+        const newStateInputs = { title: task.title, description: task.description, heading: '', headings: task.headings || [], dateDeadline: task.dateDeadline || '' }
         setInputsValues(newStateInputs)
         if (task.title === undefined) {
             dispatch(getTasks())
@@ -32,9 +32,17 @@ const EditTaskPage = () => {
     const onSubmitForm = (e) => {
         e.preventDefault()
         if (inputsValues.title.trim() !== '' && inputsValues.description.trim() !== '') {
-            const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited' }
-            dispatch(changeTask({ id: param.id, task: newTask }))
-            navigate('/')
+            try {
+                if (Date.parse(new Date()) > Date.parse(new Date(inputsValues.dateDeadline))) {
+                    setCheckFields(true)
+                } else {
+                    const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited', dateCreate: new Date().toISOString(), dateDeadline: new Date(inputsValues.dateDeadline).toISOString() || '' }
+                    dispatch(changeTask({ id: param.id, task: newTask }))
+                    navigate('/')
+                }
+            } catch (err) {
+                setCheckFields(true)
+            }
         } else {
             setCheckFields(true)
         }

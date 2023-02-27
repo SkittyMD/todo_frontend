@@ -5,7 +5,7 @@ import TaskForm from "../../components/TaskForm/TaskForm";
 import { addTask } from "../../store/tasks.slice";
 
 const AddTaskPage = () => {
-    const [inputsValues, setInputsValues] = useState({ title: '', description: '', heading: '', headings: [] })
+    const [inputsValues, setInputsValues] = useState({ title: '', description: '', heading: '', headings: [], dateDeadline: '' })
     const [checkFields, setCheckFields] = useState(false)
 
 
@@ -21,9 +21,17 @@ const AddTaskPage = () => {
     const onSubmitForm = (e) => {
         e.preventDefault()
         if (inputsValues.title.trim() !== '' && inputsValues.description.trim() !== '') {
-            const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited' }
-            dispatch(addTask(newTask))
-            navigate('/')
+            try {
+                if (Date.parse(new Date()) > Date.parse(new Date(inputsValues.dateDeadline))) {
+                    setCheckFields(true)
+                } else {
+                    const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited', dateCreate: new Date().toISOString(), dateDeadline: new Date(inputsValues.dateDeadline).toISOString() || '' }
+                    dispatch(addTask(newTask))
+                    navigate('/')
+                }
+            } catch (err) {
+                setCheckFields(true)
+            }
         } else {
             setCheckFields(true)
         }

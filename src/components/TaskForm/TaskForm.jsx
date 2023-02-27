@@ -38,6 +38,13 @@ const TaskForm = ({ onSubmitForm, values, onChangeInp, checkFields, addHeadingBt
                     onChange={(e) => onChangeInp(e)}
                 />
                 <Button type="button" onClick={addHeadingBtn}>Добавить заголовок</Button>
+                <p>Формат даты "2022-02-02T11:40"</p>
+                <Input
+                    nameInp='dateDeadline'
+                    value={values.dateDeadline || ''}
+                    placeholder='Добавьте сроки сдачи (не обязательно)'
+                    onChange={(e) => onChangeInp(e)}
+                />
                 <div className="buttons__TaskForm">
                     <Button>Подтвердить</Button>
                 </div>
@@ -45,7 +52,7 @@ const TaskForm = ({ onSubmitForm, values, onChangeInp, checkFields, addHeadingBt
             <div className="buttons__TaskForm">
                 <Button onClick={() => { navigate('/') }}>Вернуться к задачам</Button>
             </div>
-            {checkFields ? <p className="warning">Заполните поля</p> : null}
+            {checkFields ? <p className="warning">Заполните поля (заполните дату согласно формату)</p> : null}
         </>
     )
 }

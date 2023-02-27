@@ -14,32 +14,51 @@ const MyTasksPage = () => {
     useEffect(() => {
         dispatch(getTasks())
     }, [dispatch])
-    
+
     useEffect(() => {
         let newHeadings = []
-        const copyTasks = {...tasks}
+        const copyTasks = { ...tasks }
         Object.keys(copyTasks).forEach(key => {
-            if (copyTasks[key].headings){
+            if (copyTasks[key].headings) {
                 newHeadings = [...newHeadings, ...copyTasks[key].headings]
             }
         })
         dispatch(addHeadings(Array.from(new Set(newHeadings))))
+
     }, [tasks, dispatch])
 
-    const editBtn = (key) => {
+    // useEffect(() => {
+    //     const check = false
+    //     const copyTasks = { ...tasks }
+    //     Object.keys(copyTasks).forEach(key => {
+    //         if(copyTasks[key])
+    //         // let a = Date.parse(new Date())
+    //         // if (a > Date.parse(copyTasks[key].dateDeadline)) {
+    //         //     const copyTask = { ...copyTasks[key] }
+    //         //     copyTask.status = 'overdue'
+    //         //     dispatch(changeTask({ id: key, task: copyTask }))
+    //         // }
+    //     })
+    // }, [tasks, dispatch])
+
+    const editBtn = (key, e) => {
+        e.stopPropagation()
         navigate(`/edit-task/${key}`)
     }
 
-    const deleteBtn = (key) => {
-        dispatch(deleteTask({id: key}))
+    const deleteBtn = (key, e) => {
+        e.stopPropagation()
+        dispatch(deleteTask({ id: key }))
     }
 
     const somefn = () => {
         console.log('a')
     }
 
-    const changeStatusBtn = (id, task) => {
-        const copyTask = {...task}
+    const changeStatusBtn = (id, task, e) => {
+        console.log(e)
+        e.stopPropagation()
+        const copyTask = { ...task }
         const newStatus = task.status === 'complited' ? 'uncomplited' : 'complited'
         copyTask.status = newStatus
         dispatch(changeTask({ id: id, task: copyTask }))

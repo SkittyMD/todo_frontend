@@ -1,11 +1,15 @@
 import Button from "../../UI/Button/Button";
 import './TaskListItem.css'
 
-const TaskListItem = ({ status, onClickTask, changeStatusBtn, deleteBtn, editBtn, title, description, headings }) => {
+const TaskListItem = ({ status, onClickTask, changeStatusBtn, deleteBtn, editBtn, title, description, headings, dateCreate, dateDeadline }) => {
     return (
         <div className={status} onClick={onClickTask}>
             <h2>{title}</h2>
             <p>{description}</p>
+            <p>Дата создания/обновления: {(new Date(dateCreate)).toLocaleString()}</p>
+            {!!dateDeadline ?
+            <p>Деадлайн до: {(new Date(dateDeadline)).toLocaleString()}</p>
+            : null}
             <div>
                 <Button onClick={deleteBtn}>Удалить</Button>
                 <Button onClick={editBtn}>Редактировать</Button>

@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import TaskForm from "../../components/TaskForm/TaskForm";
+import { changeTask, getTasks } from "../../store/tasks.slice";
 
 const EditTaskPage = () => {
     const [inputsValues, setInputsValues] = useState({ title: '', description: '', heading: '', headings: [] })
     const [checkFields, setCheckFields] = useState(false)
 
-    const { tasks, headhings } = useSelector(state => state.tasks, shallowEqual)
+    const { tasks } = useSelector(state => state.tasks, shallowEqual)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -15,12 +16,12 @@ const EditTaskPage = () => {
 
     useEffect(() => {
         const task = { ...tasks[param.id] }
-        const newStateInputs = { title: task.title, description: task.description, heading: '', headings: headhings }
+        const newStateInputs = { title: task.title, description: task.description, heading: '', headings: task.headings || [] }
         setInputsValues(newStateInputs)
-        if (task.title = '') {
-            console.log('s')
+        if (task.title === undefined) {
+            dispatch(getTasks())
         }
-    }, [headhings, param, tasks])
+    }, [param, tasks, dispatch])
 
     const onChangeInp = (e) => {
         const copyState = { ...inputsValues }
@@ -32,11 +33,7 @@ const EditTaskPage = () => {
         e.preventDefault()
         if (inputsValues.title.trim() !== '' && inputsValues.description.trim() !== '') {
             const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited' }
-            // dispatch(addTask(newTask))
-            const uniqueArray = [...headhings, ...inputsValues.headings].filter(function (item, pos) {
-                return [...headhings, ...inputsValues.headings].indexOf(item) === pos;
-            })
-            // dispatch(addHeadings(uniqueArray))
+            dispatch(changeTask({ id: param.id, task: newTask }))
             navigate('/')
         } else {
             setCheckFields(true)
@@ -45,16 +42,20 @@ const EditTaskPage = () => {
 
     const addHeadingBtn = () => {
         if (inputsValues.heading.trim() !== '' && inputsValues.headings.indexOf(inputsValues.heading.trim()) === -1) {
+            const copyHeadnigs = [...inputsValues.headings]
+            copyHeadnigs.push(inputsValues.heading.trim().toLowerCase())
             const copyState = { ...inputsValues }
-            copyState.headings.push(inputsValues.heading.trim())
             copyState.heading = ''
+            copyState.headings = copyHeadnigs
             setInputsValues(copyState)
         }
     }
 
     const deleteHeadingBtn = (heading) => {
+        const copyHeadnigs = [...inputsValues.headings]
+        copyHeadnigs.splice(copyHeadnigs.indexOf(heading), 1)
         const copyState = { ...inputsValues }
-        copyState.headings.splice(copyState.headings.indexOf(heading), 1) 
+        copyState.headings = copyHeadnigs
         setInputsValues(copyState)
     }
 

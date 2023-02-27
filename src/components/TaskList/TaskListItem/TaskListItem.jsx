@@ -1,23 +1,26 @@
+import Button from "../../UI/Button/Button";
+import './TaskListItem.css'
+
 const TaskListItem = ({ status, onClickTask, changeStatusBtn, deleteBtn, editBtn, title, description, headings }) => {
     return (
         <div className={status} onClick={onClickTask}>
             <h2>{title}</h2>
             <p>{description}</p>
             <div>
-                <button onClick={deleteBtn}>Удалить</button>
-                <button onClick={editBtn}>Редактировать</button>
+                <Button onClick={deleteBtn}>Удалить</Button>
+                <Button onClick={editBtn}>Редактировать</Button>
                 {
                     status === 'overdue'
                         ?
                         null
                         :
-                        <button
+                        <Button
                             onClick={changeStatusBtn}
-                        >Отметить как {status === 'complited' ? 'невыполненое' : 'выполненное'}</button>
+                        >Отметить как {status === 'complited' ? 'невыполненое' : 'выполненное'}</Button>
                 }
             </div>
             <div>
-                {headings.map(heading => {
+                {headings === undefined ? null : headings.map(heading => {
                     return <p
                         key={heading}
                         className="heading_task"

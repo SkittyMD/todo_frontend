@@ -9,6 +9,7 @@ const App = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<MyTasksPage />} />
+        <Route path="/tasks/:headings" element={<MyTasksPage />} />
         <Route path="/add-task" element={<AddTaskPage />} />
         <Route path="/edit-task/:id" element={<EditTaskPage />} />
       </Route>

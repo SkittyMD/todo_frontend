@@ -17,17 +17,16 @@ class ApiTasks {
             console.log(err)
         }
     }
-    getHeadhings = async () => {
+    changeTask = async (id, task) => {
         try {
-            const response = await instance.get('/headings.json')
-            return response.data
+            await instance.put(`/tasks/${id}.json`, task)
         } catch (err) {
             console.log(err)
         }
     }
-    addHeadhings = async (headings) => {
+    deleteTask = async (id) => {
         try {
-            await instance.put('/headings.json', headings)
+            await instance.delete(`/tasks/${id}.json`)
         } catch (err) {
             console.log(err)
         }

@@ -10,7 +10,7 @@ const Headingsbar = ({headhings}) => {
                 childern='Все задачи'
                 path='../'
             />
-            {headhings?.length ? headhings.map(el => {
+            {headhings.length ? headhings.map(el => {
                 return (
                     <HeadingsbarItem
                         key={el}

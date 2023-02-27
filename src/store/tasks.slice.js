@@ -20,18 +20,20 @@ export const addTask = createAsyncThunk(`${namespace}/addTask`, async (task) => 
     }
 })
 
-export const getHeadings = createAsyncThunk(`${namespace}/getHeadings`, async () => {
+export const changeTask = createAsyncThunk(`${namespace}/changeTask`, async (action) => {
     try {
-        return await apiTasks.getHeadhings()
+        await apiTasks.changeTask(action.id, action.task)
+        return action
     } catch (err) {
         console.log(err)
     }
 })
 
-export const addHeadings = createAsyncThunk(`${namespace}/addHeadings`, async (headings) => {
+export const deleteTask = createAsyncThunk(`${namespace}/deleteTask`, async (action) => {
     try {
-        await apiTasks.addHeadhings(headings)
-        return headings
+        console.log(action.id)
+        await apiTasks.deleteTask(action.id)
+        return action.id
     } catch (err) {
         console.log(err)
     }
@@ -41,7 +43,16 @@ export const tasksSlice = createSlice({
     name: namespace,
     initialState: {
         tasks: {},
-        headhings: []
+        headings: []
+    },
+    reducers: {
+        addHeadings(state, action) {
+            try {
+                state.headings = action.payload
+            } catch (err) {
+                console.log(err)
+            }
+        }
     },
     extraReducers: builder => {
         builder
@@ -49,13 +60,17 @@ export const tasksSlice = createSlice({
                 state.tasks = action.payload || {}
             })
             .addCase(addTask.fulfilled, (state, action) => {
-                state.tasks[action.payload.key] = action.payload.data 
+                state.tasks[action.payload.key] = action.payload.data
             })
-            .addCase(getHeadings.fulfilled, (state, action) => {
-                state.headhings = action.payload || []
+            .addCase(changeTask.fulfilled, (state, action) => {
+                state.tasks[action.payload.id] = action.payload.task
             })
-            .addCase(addHeadings.fulfilled, (state, action) => {
-                state.headhings = action.payload
+            .addCase(deleteTask.fulfilled, (state, action) => {
+                delete state.tasks[action.payload]
             })
     }
 })
+
+export const {
+    addHeadings
+} = tasksSlice.actions

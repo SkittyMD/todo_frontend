@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import TaskForm from "../../components/TaskForm/TaskForm";
-import { addHeadings, addTask } from "../../store/tasks.slice";
+import { addTask } from "../../store/tasks.slice";
 
 const AddTaskPage = () => {
     const [inputsValues, setInputsValues] = useState({ title: '', description: '', heading: '', headings: [] })
     const [checkFields, setCheckFields] = useState(false)
 
-    const { headhings } = useSelector(state => state.tasks)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -24,20 +23,16 @@ const AddTaskPage = () => {
         if (inputsValues.title.trim() !== '' && inputsValues.description.trim() !== '') {
             const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited' }
             dispatch(addTask(newTask))
-            const uniqueArray = [...headhings, ...inputsValues.headings].filter(function (item, pos) {
-                return [...headhings, ...inputsValues.headings].indexOf(item) === pos;
-            })
-            dispatch(addHeadings(uniqueArray))
             navigate('/')
         } else {
             setCheckFields(true)
         }
     }
-    
+
     const addHeadingBtn = () => {
         if (inputsValues.heading.trim() !== '' && inputsValues.headings.indexOf(inputsValues.heading.trim()) === -1) {
             const copyState = { ...inputsValues }
-            copyState.headings.push(inputsValues.heading.trim())
+            copyState.headings.push(inputsValues.heading.trim().toLowerCase())
             copyState.heading = ''
             setInputsValues(copyState)
         }
@@ -45,7 +40,7 @@ const AddTaskPage = () => {
 
     const deleteHeadingBtn = (heading) => {
         const copyState = { ...inputsValues }
-        copyState.headings.splice(copyState.headings.indexOf(heading), 1) 
+        copyState.headings.splice(copyState.headings.indexOf(heading), 1)
         setInputsValues(copyState)
     }
 

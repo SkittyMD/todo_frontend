@@ -13,7 +13,6 @@ const MyTasksPage = () => {
     const [dataModal, setDataModal] = useState({title: '', description: ''})
 
     const { tasks, headings } = useSelector(state => state.tasks, shallowEqual)
-
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -53,7 +52,6 @@ const MyTasksPage = () => {
 
     const onClickTask = (id) => {
         setDataModal({title: tasks[id].title, description: tasks[id].description})
-        console.log(id)
         setActiveModal(true)
     }
 

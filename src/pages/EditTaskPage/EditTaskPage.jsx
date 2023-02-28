@@ -32,7 +32,6 @@ const EditTaskPage = () => {
     const onSubmitForm = (e) => {
         e.preventDefault()
         if (inputsValues.dateDeadline.trim() === '') {
-            console.log(inputsValues.dateDeadline)
             const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited', dateCreate: new Date().toISOString(), dateDeadline: inputsValues.dateDeadline.trim() === '' ? '' : new Date(inputsValues.dateDeadline).toISOString() }
             dispatch(changeTask({ id: param.id, task: newTask }))
             navigate('/')
@@ -49,21 +48,6 @@ const EditTaskPage = () => {
                 setCheckFields(true)
             }
         }
-        // if (inputsValues.title.trim() !== '' && inputsValues.description.trim() !== '') {
-        //     try {
-        //         if (Date.parse(new Date()) > Date.parse(new Date(inputsValues.dateDeadline))) {
-        //             setCheckFields(true)
-        //         } else {
-        //             const newTask = { title: inputsValues.title.trim(), description: inputsValues.description.trim(), headings: inputsValues.headings, status: 'uncomplited', dateCreate: new Date().toISOString(), dateDeadline: new Date(inputsValues.dateDeadline).toISOString() || '' }
-        //             dispatch(changeTask({ id: param.id, task: newTask }))
-        //             navigate('/')
-        //         }
-        //     } catch (err) {
-        //         setCheckFields(true)
-        //     }
-        // } else {
-        //     setCheckFields(true)
-        // }
     }
 
     const addHeadingBtn = () => {

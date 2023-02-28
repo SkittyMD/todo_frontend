@@ -7,9 +7,15 @@
     border: 1px solid $background_thrid;
     margin-top: 10px;
     transition: 0.5s;
+    position: relative;
 
     @include _580 {
         text-align: center;
+    }
+
+    &_overdue_text {
+        position: absolute;
+        right: 20px;
     }
 
     &_title {

@@ -4,6 +4,7 @@ import './TaskListItem.scss'
 const TaskListItem = ({ status, onClickTask, changeStatusBtn, deleteBtn, editBtn, title, headings, dateCreate, dateDeadline }) => {
     return (
         <div className={status + ' TaskListItem'} onClick={onClickTask}>
+            {status === 'overdue' ? <p className="TaskListItem_overdue_text">просрочено</p> : null}
             <h2 className="TaskListItem_title">{title}</h2>
             <div className="TaskListItem_headings_block">
                 {headings === undefined ? null : headings.map(heading => {

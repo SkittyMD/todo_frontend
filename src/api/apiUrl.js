@@ -1,1 +1,1 @@
-export const apiUrl = 'https://test-e2fe2-default-rtdb.firebaseio.com/'
+export const apiUrl = 'http://localhost:8000'

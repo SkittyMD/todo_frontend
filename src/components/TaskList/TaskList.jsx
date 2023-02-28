@@ -21,7 +21,6 @@ const TaskList = ({ tasks, onClickTask, changeStatusBtn, deleteBtn, editBtn }) =
                         key={task}
                         status={tasks[task].status}
                         title={tasks[task].title}
-                        description={tasks[task].description}
                         headings={tasks[task].headings}
                         onClickTask={() => onClickTask(task)}
                         changeStatusBtn={(e) => changeStatusBtn(task, tasks[task], e)}
@@ -36,7 +35,6 @@ const TaskList = ({ tasks, onClickTask, changeStatusBtn, deleteBtn, editBtn }) =
                             key={task}
                             status={tasks[task].status}
                             title={tasks[task].title}
-                            description={tasks[task].description}
                             headings={tasks[task].headings}
                             onClickTask={() => onClickTask(task)}
                             changeStatusBtn={(e) => changeStatusBtn(task, tasks[task], e)}

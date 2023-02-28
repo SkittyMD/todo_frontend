@@ -6,6 +6,8 @@
     border-radius: 20px;
     border: 1px solid $background_thrid;
     margin-top: 10px;
+    transition: 0.5s;
+
     @include _580 {
         text-align: center;
     }
@@ -19,6 +21,7 @@
 
     &_description {
         padding: 20px 0 40px 30px;
+
         @include _580 {
             text-align: center;
             padding: 20px 0 40px 0;
@@ -27,13 +30,17 @@
     }
 
     &_date {
+        margin-top: 10px;
         padding-bottom: 5px;
         text-align: end;
+
         @include _580 {
             text-align: center;
         }
+
         &_span {
             font-weight: bold;
+
             @include _580 {
                 display: block;
             }
@@ -45,6 +52,7 @@
         justify-content: flex-end;
         flex-wrap: wrap;
         gap: 5px;
+
         @include _580 {
             justify-content: center;
         }
@@ -54,9 +62,8 @@
         display: flex;
         flex-wrap: wrap;
         gap: 5px;
-        margin-top: 15px;
-        border-top: 1px solid $text_color_first;
         padding-top: 10px;
+
         @include _580 {
             justify-content: center;
         }
@@ -72,6 +79,11 @@
             border: 1px solid $background_thrid;
         }
     }
+}
+
+.TaskListItem:hover {
+    transform: scale(1.01);
+    transition: 0.5s;
 }
 
 .complited {

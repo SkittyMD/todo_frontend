@@ -38,7 +38,7 @@ const TaskForm = ({ onSubmitForm, values, onChangeInp, checkFields, addHeadingBt
                     onChange={(e) => onChangeInp(e)}
                 />
                 <Button type="button" onClick={addHeadingBtn}>Добавить заголовок</Button>
-                <p className="date__text">Формат даты "2022-02-02T11:40"</p>
+                <p className="date__text">Формат даты "2022-02-25T11:40"</p>
                 <Input
                     nameInp='dateDeadline'
                     value={values.dateDeadline || ''}

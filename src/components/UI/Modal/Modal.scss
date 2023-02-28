@@ -1,0 +1,43 @@
+@import 'src/styles/global.scss';
+@import 'src/styles/variables.sass';
+
+.backdrop {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.281);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    text-align: center;
+}
+
+.backdrop.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.Modal_title {
+    border-bottom: 1px solid white;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.content__Modal {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: $background_second;
+    max-width: 900px;
+    min-width: 320px;
+    transform: scale(0.5);
+    transition: 0.4s all;
+}
+
+.content__Modal.active {
+    transform: scale(1)
+}

@@ -6,9 +6,9 @@ const TaskListItem = ({ status, onClickTask, changeStatusBtn, deleteBtn, editBtn
         <div className={status + ' TaskListItem'} onClick={onClickTask}>
             <h2 className="TaskListItem_title">{title}</h2>
             <p className="TaskListItem_description">{description}</p>
-            <p className="TaskListItem_date">Дата создания/обновления: {(new Date(dateCreate)).toLocaleString()}</p>
+            <p className="TaskListItem_date">Дата создания/обновления: <span className="TaskListItem_date_span">{(new Date(dateCreate)).toLocaleString()}</span></p>
             {!!dateDeadline ?
-                <p className="TaskListItem_date">Деадлайн до: {(new Date(dateDeadline)).toLocaleString()}</p>
+                <p className="TaskListItem_date">Деадлайн до: <span className="TaskListItem_date_span">{(new Date(dateDeadline)).toLocaleString()}</span></p>
                 : null}
             <div className="TaskListItem_btns_block">
                 <Button onClick={deleteBtn}>Удалить</Button>

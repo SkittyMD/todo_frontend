@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { instance } from "../../api/instances";
+import WithLoader from "../../hoc/WithLoader";
 import TaskList from "../../components/TaskList/TaskList";
 import Headingsbar from "../../components/UI/Headingsbar/Headingsbar";
 import { addHeadings, changeTask, deleteTask, getTasks } from "../../store/tasks.slice";
@@ -77,4 +79,4 @@ const MyTasksPage = () => {
     )
 };
 
-export default MyTasksPage
+export default WithLoader(MyTasksPage, instance);
